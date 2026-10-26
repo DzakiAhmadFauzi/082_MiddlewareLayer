@@ -195,4 +195,17 @@ app.delete(
             [id]
         )
 
-        
+        if (result.rowCount === 0) {
+            return errorResponse(
+                res, 'Data tidak ditemukan', 404
+            )
+        }
+
+        return successResponse(
+            res,
+            'Data berhasil dihapus',
+            result.rows[0]
+        )
+    }
+)
+
