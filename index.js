@@ -184,3 +184,15 @@ app.put(
     }
 )
 
+app.delete(
+    '/biodata/:id',
+    validateParams(idSchema),
+    async (req, res) => {
+        const { id } = req.params
+
+        const result = await pool.query(
+            `DELETE FROM biodata WHERE id = $1 RETURNING *`,
+            [id]
+        )
+
+        
